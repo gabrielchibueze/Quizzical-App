@@ -11,8 +11,6 @@ function App() {
   const [newData, setNewData] = useState([])
   const [id, setId] = useState(0)
   const [mainData, setMainData] = useState([])
-  const [answerArrays, setAnswerArrays] = useState([])
-  // const [launch, setLaunch] = useState()
 
   
   // an async function that fetches the question data from API
@@ -59,7 +57,6 @@ function App() {
         answer_id: nanoid(),
         isSelected: false
       });
-      setAnswerArrays(answers)
       return shuffleAnswerList(answers);
     }
     
@@ -79,7 +76,7 @@ function App() {
   function flipSelected (questionId, answerId){
     setMainData(oldData => {
       const adjustedData = oldData.map(data =>{
-        return data.id === questionId ? {...data, isSelected: !data.isSelected, 
+        return data.id === questionId ? {...data, isSelected: true, 
             all_answers: data.all_answers.map(answer=>{
               return answer.answer_id === answerId ? {...answer, isSelected: true} : {...answer, isSelected: false}
             })
